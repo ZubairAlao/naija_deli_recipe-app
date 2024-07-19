@@ -228,8 +228,8 @@ const Feed: React.FC = () => {
          }
       </div>
       <div className="flex gap-4">
-        <GreenButton children="Popular" />
-        <GreenButton children="Latest" />
+        <GreenButton>Popular</GreenButton>
+        <GreenButton>Latest</GreenButton>
       </div>
       {error && <div className="text-red-500">{error}</div>}
 
