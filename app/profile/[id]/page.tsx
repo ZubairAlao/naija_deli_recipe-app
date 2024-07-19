@@ -115,7 +115,7 @@ interface Post {
   return (
     <Profile
         name={userName}
-        desc={`Welcome to ${userName}'s personalized profile page`}
+        desc={`Welcome to ${userName} personalized profile page`}
         posts={userPosts}
         loading={loading}
         handleEdit={handleEdit}
