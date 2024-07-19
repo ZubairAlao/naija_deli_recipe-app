@@ -71,3 +71,56 @@ export const RecommendedSkeleton = () => {
     );
   };
 
+
+  export function FormSkeleton() {
+    return (
+        <section className="w-full max-w-3xl flex flex-col items-start p-6 bg-white shadow-lg rounded-lg my-20 mx-auto">
+            <div className="animate-pulse w-full">
+                <div className="h-8 bg-gray-300 rounded mb-4"></div>
+                <div className="h-6 bg-gray-300 rounded mb-6 w-3/4"></div>
+
+                <form className="w-full">
+                    <div className="mb-4">
+                        <div className="h-6 bg-gray-300 rounded mb-2 w-1/4"></div>
+                        <div className="h-10 bg-gray-300 rounded"></div>
+                    </div>
+
+                    <div className="mb-4">
+                        <div className="h-6 bg-gray-300 rounded mb-2 w-1/4"></div>
+                        <div className="h-10 bg-gray-300 rounded"></div>
+                    </div>
+
+                    <div className="mb-4">
+                        <div className="h-6 bg-gray-300 rounded mb-2 w-1/4"></div>
+                        <div className="h-10 bg-gray-300 rounded"></div>
+                    </div>
+
+                    <div className="mb-4">
+                        <div className="h-6 bg-gray-300 rounded mb-2 w-1/4"></div>
+                        <div className="h-32 bg-gray-300 rounded"></div>
+                    </div>
+
+                    <div className="mb-4">
+                        <div className="h-6 bg-gray-300 rounded mb-2 w-1/4"></div>
+                        <div className="h-10 bg-gray-300 rounded"></div>
+                    </div>
+
+                    <div className="mb-4">
+                        <div className="h-6 bg-gray-300 rounded mb-2 w-1/4"></div>
+                        <div className="h-32 bg-gray-300 rounded"></div>
+                    </div>
+
+                    <div className="mb-4">
+                        <div className="h-6 bg-gray-300 rounded mb-2 w-1/4"></div>
+                        <div className="h-10 bg-gray-300 rounded"></div>
+                    </div>
+
+                    <div className="flex justify-end gap-4 mt-6">
+                        <div className="h-10 bg-gray-300 rounded w-1/4"></div>
+                        <div className="h-10 bg-gray-300 rounded w-1/4"></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    );
+}

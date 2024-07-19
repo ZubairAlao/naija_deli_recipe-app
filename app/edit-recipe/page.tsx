@@ -1,9 +1,10 @@
 "use client"
 
 import Form from '@/app/ui/form';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { FormSkeleton } from '@/app/ui/skeletons';
 
 
 interface FormData {
@@ -17,7 +18,7 @@ interface FormData {
   categories: string;
 }
 
-export default function EditRecipe() {
+function EditRecipe() {
   const router = useRouter();
   const { data: session } = useSession();
   const searchParams = useSearchParams();
@@ -160,5 +161,14 @@ export default function EditRecipe() {
       handleSubmit={editRecipe}
       isEditMode={true}
     />
+  );
+}
+
+
+export default function EditRecipePage() {
+  return (
+    <Suspense fallback={<FormSkeleton />}>
+      <EditRecipe />
+    </Suspense>
   );
 }
