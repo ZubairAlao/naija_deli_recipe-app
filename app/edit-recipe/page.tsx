@@ -38,25 +38,45 @@ function EditRecipe() {
   });
 
   useEffect(() => {
-    const getRecipeDetails = async() => {
-      const response = await fetch(`/api/post/${recipeId}`)
-      if (!response.ok) {
-        throw new Error('Failed to fetch recipe details');
+    // const getRecipeDetails = async() => {
+    //   const response = await fetch(`/api/post/${recipeId}`)
+    //   if (!response.ok) {
+    //     throw new Error('Failed to fetch recipe details');
+    //   }
+
+    //   const data = await response.json();
+
+    //   setFormData({
+    //     title: data.title,
+    //     description: data.description,
+    //     time: data.time,
+    //     imageUrl: data.imageUrl,
+    //     imagePublicId: data.imagePublicId,
+    //     ingredients: data.ingredients,
+    //     walkthrough: data.walkthrough,
+    //     categories: data.categories
+    //   })
+    // }
+    const getRecipeDetails = async () => {
+      try {
+        const response = await fetch(`/api/post/${recipeId}`);
+        if (!response.ok) throw new Error('Failed to fetch recipe details');
+
+        const data = await response.json();
+        setFormData({
+          title: data.title,
+          description: data.description,
+          time: data.time,
+          imageUrl: data.imageUrl,
+          imagePublicId: data.imagePublicId,
+          ingredients: data.ingredients,
+          walkthrough: data.walkthrough,
+          categories: data.categories
+        });
+      } catch (error) {
+        console.error(error);
       }
-
-      const data = await response.json();
-
-      setFormData({
-        title: data.title,
-        description: data.description,
-        time: data.time,
-        imageUrl: data.imageUrl,
-        imagePublicId: data.imagePublicId,
-        ingredients: data.ingredients,
-        walkthrough: data.walkthrough,
-        categories: data.categories
-      })
-    }
+    };
 
     if(recipeId) getRecipeDetails();
     
@@ -172,3 +192,4 @@ export default function EditRecipePage() {
     </Suspense>
   );
 }
+
