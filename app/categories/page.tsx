@@ -1,4 +1,5 @@
 "use client"
+export const dynamic = 'force-dynamic'
 
 import ListCard from "@/app/ui/list-card"
 import { useRouter } from "next/navigation";

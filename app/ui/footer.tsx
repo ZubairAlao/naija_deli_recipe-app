@@ -44,7 +44,6 @@ export default function Footer() {
           <h1 className="text-lg text-[#2E7D32] dark:text-[#ff6f00] font-semibold">Site Links</h1>
           <ul className="mt-2">
             <li><Link href="/about">NaijaDeli</Link></li>
-            <li><Link href="/services">Popular Recipe</Link></li>
             <li><Link href="/membership">Categories</Link></li>
           </ul>
         </div>

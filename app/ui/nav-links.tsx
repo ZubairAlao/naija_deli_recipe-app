@@ -12,6 +12,7 @@ import {
 import Link from 'next/link';
 import NaijaDeli from './naija-deli';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import {signIn, signOut, useSession, getProviders, ClientSafeProvider} from 'next-auth/react';
 import Provider from './provider';
@@ -27,6 +28,13 @@ export default function NavLinks() {
   const [providers, setProviders] = useState<Providers>(null);
   const pathname = usePathname();
   const [toggleDropdown, setToggleDropdown] = useState(false);
+
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push('/');
+  };
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -106,7 +114,7 @@ export default function NavLinks() {
               </div>
             ) : (
               <div 
-                className={`md:hidden flex flex-col items-center absolute top-0 left-0 w-full mt-[40px] py-4 bg-white overflow-hidden transition-max-height duration-500 ${toggleDropdown ? 'max-h-96 border border-t-slate-500' : 'max-h-0'}`}
+                className={`md:hidden flex flex-col items-center absolute top-0 left-0 w-full mt-[54px] py-4 bg-white overflow-hidden transition-max-height duration-500 ${toggleDropdown ? 'max-h-96 border border-t-slate-500' : 'max-h-0'}`}
               >
                 <Link
                   href="/categories"
@@ -167,7 +175,7 @@ export default function NavLinks() {
 
             <button 
               type="button" 
-              onClick={() => signOut()} 
+              onClick={handleSignOut}
               className={`flex-center gap-2 p-3 text-sm font-medium hover:text-orange-600 md:flex-none md:justify-start md:p-2 md:px-3`}
             >
                 Sign Out

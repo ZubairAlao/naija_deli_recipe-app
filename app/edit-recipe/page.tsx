@@ -4,7 +4,7 @@ import Form from '@/app/ui/form';
 import { useState, useEffect, Suspense } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-
+import { FormSkeleton } from '@/app/ui/skeletons';
 
 
 interface FormData {
@@ -187,7 +187,7 @@ function EditRecipe() {
 
 export default function EditRecipePage() {
   return (
-    <Suspense>
+    <Suspense fallback={<FormSkeleton />}>
       <EditRecipe />
     </Suspense>
   );
