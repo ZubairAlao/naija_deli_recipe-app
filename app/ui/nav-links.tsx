@@ -68,7 +68,7 @@ export default function NavLinks() {
           <div className="bg-white">
             {session?.user ? (
               <div 
-                className={`md:hidden flex flex-col items-center absolute top-0 left-0 w-full mt-[54px] py-4 bg-white overflow-hidden transition-max-height duration-500 ${toggleDropdown ? 'max-h-96 border border-t-slate-500' : 'max-h-0'}`}
+                className={`md:hidden flex flex-col items-center absolute top-0 left-0 w-full mt-[52px] py-4 bg-white overflow-hidden transition-max-height duration-500 ${toggleDropdown ? 'max-h-96 border border-t-slate-500' : 'max-h-0'}`}
               >
                 <Link
                   href="/profile"
@@ -114,7 +114,7 @@ export default function NavLinks() {
               </div>
             ) : (
               <div 
-                className={`md:hidden flex flex-col items-center absolute top-0 left-0 w-full mt-[54px] py-4 bg-white overflow-hidden transition-max-height duration-500 ${toggleDropdown ? 'max-h-96 border border-t-slate-500' : 'max-h-0'}`}
+                className={`md:hidden flex flex-col items-center absolute top-0 left-0 w-full mt-[52px] py-4 bg-white overflow-hidden transition-max-height duration-500 ${toggleDropdown ? 'max-h-96 border border-t-slate-500' : 'max-h-0'}`}
               >
                 <Link
                   href="/categories"
