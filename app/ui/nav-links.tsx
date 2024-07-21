@@ -105,7 +105,7 @@ export default function NavLinks() {
 
                 <button 
                   type="button" 
-                  onClick={() => { signOut(); setToggleDropdown((prev) => !prev) }}
+                  onClick={() => { handleSignOut; setToggleDropdown((prev) => !prev) }}
                   className={`flex-center gap-2 p-3 text-sm font-medium hover:bg-sky-100 hover:text-green-600 md:flex-none md:justify-start md:p-2 md:px-3`}
                 >
                     Sign Out

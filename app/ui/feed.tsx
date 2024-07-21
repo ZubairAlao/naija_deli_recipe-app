@@ -218,9 +218,9 @@ const Feed: React.FC = () => {
     <section className="px-8">
       <div className="py-4 space-y-5 mb-8">
         <Search searchText={searchText}  handleSearchChange={handleSearchChange}/>
-        {searchedResults.length > 0 ? 
+        {searchedResults.length > 0 ?
         null
-         : 
+         :
          <div className="space-y-5">
           <p className="text-left text-lg font-semibold">Recommended</p>
           <Recommended />
