@@ -147,7 +147,7 @@ function EditRecipe() {
       });
 
       if (response.ok) {
-        router.push('/');
+        router.back();
       }
     } catch (error) {
       console.log(error);
