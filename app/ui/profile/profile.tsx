@@ -48,14 +48,14 @@ const Profile: React.FC<ProfileProps> = ({ name, desc, posts, loading, handleEdi
     return (
         <section className="w-full mt-[80px] px-8">
             <div className="bg-gray-50 w-full max-w-6xl mx-auto p-8 rounded-lg shadow-md">
-                <div className="flex items-center space-x-6">
-                    <div className="relative w-32 h-32">
+                <div className="flex text-center items-center flex-col sm:flex-row space-x-6">
+                    <div className="relative w-16 h-16 sm:w-28 sm:h-28">
                         {posts.map((post) => (
                             <Image
                                 src={post.creator.image}
                                 alt={post.creator.username}
                                 key={post._id}
-                                layout="fill"
+                                fill
                                 priority
                                 style={{ objectFit: 'cover' }}
                                 className="rounded-full border-2 border-gray-300"
@@ -63,7 +63,7 @@ const Profile: React.FC<ProfileProps> = ({ name, desc, posts, loading, handleEdi
                         ))}
                     </div>
                     <div>
-                        <h1 className="text-3xl font-semibold">
+                        <h1 className="text-2xl font-semibold">
                             {name}
                         </h1>
                         <p className="mt-2 text-gray-600">{desc}</p>
@@ -71,7 +71,7 @@ const Profile: React.FC<ProfileProps> = ({ name, desc, posts, loading, handleEdi
                 </div>
             </div>
 
-            <div className="mt-8 px-8">
+            <div className="mt-8">
                 <h2 className="text-2xl font-semibold mb-4">{name} Posts</h2>
                 {loading && 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 px-8">

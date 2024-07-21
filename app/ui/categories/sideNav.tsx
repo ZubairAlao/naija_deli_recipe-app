@@ -29,6 +29,14 @@ interface SideNavProps {
 }
 
 export default function SideNav({ data, categoryClick }: SideNavProps) {
+  // Use reduce to ensure unique categories
+  const uniqueCategories = data.reduce<string[]>((acc, post) => {
+    if (!acc.includes(post.categories)) {
+      acc.push(post.categories);
+    }
+    return acc;
+  }, []);
+
   return (
     <div className='fixed top-12 left-0 md:h-auto w-full md:w-48 bg-green-900 shadow-md z-20'>
       <div className='pt-4 md:py-14'>
@@ -38,13 +46,13 @@ export default function SideNav({ data, categoryClick }: SideNavProps) {
         </div>
 
         <div className='flex items-center justify-center md:block'>
-          {data.map((post) => (
+          {uniqueCategories.map((category) => (
             <button
-              key={post._id}
-              onClick={() => categoryClick(post.categories)}
+              key={category}
+              onClick={() => categoryClick(category)}
               className='block py-2 px-4 text-green-300 hover:bg-green-700 hover:text-white transition duration-200'
             >
-              {post.categories}
+              {category}
             </button>
           ))}
         </div>
@@ -52,5 +60,3 @@ export default function SideNav({ data, categoryClick }: SideNavProps) {
     </div>
   );
 }
-
-

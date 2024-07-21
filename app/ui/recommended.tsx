@@ -5,6 +5,8 @@ import { lato } from "@/app/ui/fonts";
 import { HeartIcon, ClockIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { RecommendedSkeleton } from "./skeletons";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface Post {
   _id: string;
@@ -33,6 +35,8 @@ interface Post {
 export default function Recommended() {
   const [post, setPost] = useState<Post | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const fetchPost = async () => {
     try {
@@ -69,6 +73,11 @@ export default function Recommended() {
     return <RecommendedSkeleton />;
   }
 
+  const handleUsernameClick = () => {
+    if (post.creator._id === session?.user?.id) return router.push("/profile");
+    router.push(`/profile/${post.creator._id}?name=${post.creator.username}`);
+  };
+
   return (
     <div className="rounded-xl bg-gray-50 shadow-sm max-w-4xl mx-auto w-full overflow-hidden grid grid-cols-[80px_1fr] md:grid-cols-[250px_1fr] gap-2">
       <div className="relative w-60 h-40 md:h-auto overflow-hidden rounded-full -mx-40 md:rounded-md md:mx-0">
@@ -89,21 +98,16 @@ export default function Recommended() {
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-sm md:text-base font-medium">{post.title} - {post.description}</h3>
           <span className="flex items-center">
-            {/* <HeartIcon className="h-5 w-5 text-gray-700 text-sm" /> */}
             <span className="ml-1 text-sm">{post.likes} likes</span>
           </span>
         </div>
-
-        {/* <p className={`${lato.className} rounded-xl bg-white px-4 py-2 md:py-8 text-center text-sm md:text-base mb-2 md:mb-4`}>
-          {post.description}
-        </p> */}
 
         <p className={`${lato.className} rounded-xl bg-white px-4 py-2 md:py-8 text-center text-sm md:text-base mb-2 md:mb-4`}>
           {post.walkthrough}
         </p>
 
         <div className="flex justify-between items-center">
-          <h3 className="text-sm md:text-base font-medium">By: {post.creator.username}</h3>
+          <h3 onClick={handleUsernameClick} className="text-sm md:text-base font-medium cursor-pointer">By: {post.creator.username}</h3>
           <span className="flex items-center">
             <ClockIcon className="h-5 w-5 text-gray-700" />
             <span className="ml-1 text-sm md:text-base">{post.time}Min</span>
