@@ -128,8 +128,6 @@ export default function Page() {
           })
         ]);
 
-        fetchPosts(); //add fetchppost
-
         const filteredPosts = categoryPosts.filter((p) => p._id !== post._id);
         setCategoryPosts(filteredPosts);
       } catch (error) {
@@ -153,7 +151,7 @@ export default function Page() {
 
   useEffect(() => {
     fetchPosts();
-  }, [categoryPosts]); //add fetchppost
+  }, []);
 
   const handleLike = async (post: Post) => {
     if (!session) {

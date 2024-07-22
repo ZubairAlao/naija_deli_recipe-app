@@ -135,7 +135,6 @@ const Feed: React.FC = () => {
           })
         ]);
 
-        fetchPosts(); //add fetchppost
         const filteredPosts = allPosts.filter((p) => p._id !== post._id);
         setAllPosts(filteredPosts);
       } catch (error) {
@@ -146,7 +145,7 @@ const Feed: React.FC = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, [allPosts]); //add fetchppost
+  }, []);
 
   const filterPosts = (searchedText: string): Post[] => {
     const regex = new RegExp(searchedText, "i"); // 'i' flag for case-insensitive search
