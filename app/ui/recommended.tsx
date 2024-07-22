@@ -96,21 +96,22 @@ export default function Recommended() {
 
       <div className="flex flex-col justify-between p-4">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-sm md:text-base font-medium">{post.title} - {post.description}</h3>
+          <h3 className="text-xs md:text-sm font-medium">{post.title} - {post.description}</h3>
           <span className="flex items-center">
-            <span className="ml-1 text-sm">{post.likes} likes</span>
+            <span className="ml-1 text-xs">{post.likes} likes</span>
           </span>
         </div>
 
-        <p className={`${lato.className} rounded-xl bg-white px-4 py-2 md:py-8 text-center text-sm md:text-base mb-2 md:mb-4`}>
-          {post.walkthrough}
-        </p>
+        <div className={`${lato.className} rounded-xl bg-white px-4 py-2 md:py-2 text-left text-xs md:text-sm mb-2 md:mb-4`}>
+          <p>{post.walkthrough}</p>
+          <p>Ingredients: {post.ingredients}</p>
+        </div>
 
         <div className="flex justify-between items-center">
-          <h3 onClick={handleUsernameClick} className="text-sm md:text-base font-medium cursor-pointer">By: {post.creator.username}</h3>
+          <h3 onClick={handleUsernameClick} className="text-xs md:text-sm font-medium cursor-pointer hover:text-gray-500">By: {post.creator.username}</h3>
           <span className="flex items-center">
-            <ClockIcon className="h-5 w-5 text-gray-700" />
-            <span className="ml-1 text-sm md:text-base">{post.time}Min</span>
+            <ClockIcon className="h-4 w-4 text-gray-700" />
+            <span className="ml-1 text-xs">{post.time}Min</span>
           </span>
         </div>
       </div>

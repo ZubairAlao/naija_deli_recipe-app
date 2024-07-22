@@ -32,7 +32,7 @@ export default function NavLinks() {
   const router = useRouter();
 
   const handleSignOut = async () => {
-    signOut();
+    signOut({ callbackUrl: '/', redirect:true })
     router.push('/');
   };
 

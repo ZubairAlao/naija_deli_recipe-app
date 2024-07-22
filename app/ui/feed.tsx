@@ -135,6 +135,7 @@ const Feed: React.FC = () => {
           })
         ]);
 
+        fetchPosts(); //add fetchppost
         const filteredPosts = allPosts.filter((p) => p._id !== post._id);
         setAllPosts(filteredPosts);
       } catch (error) {
@@ -145,7 +146,7 @@ const Feed: React.FC = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [allPosts]); //add fetchppost
 
   const filterPosts = (searchedText: string): Post[] => {
     const regex = new RegExp(searchedText, "i"); // 'i' flag for case-insensitive search
@@ -255,10 +256,10 @@ const Feed: React.FC = () => {
          }
       </div>
       <div className="flex">
-        <p className="text-2xl font-semibold mb-4"> {sortCriteria === "latest" ? "Latest" : "Popular"} Posts</p>
+        <p className="text-lg font-semibold mb-4"> {sortCriteria === "latest" ? "Latest" : "Popular"} Posts</p>
         <div className="flex gap-4 ml-auto">
-        <GreenButton onClick={handlePopularClick} disabled={sortCriteria === "popular"}>Popular Posts</GreenButton>
-        <GreenButton onClick={handleLatestClick} disabled={sortCriteria === "latest"}>Latest Posts</GreenButton>
+        <GreenButton onClick={handlePopularClick} disabled={sortCriteria === "popular"}>Popular</GreenButton>
+        <GreenButton onClick={handleLatestClick} disabled={sortCriteria === "latest"}>Latest</GreenButton>
         </div>
       </div>
       {error && <div className="text-red-500">{error}</div>}

@@ -15,7 +15,7 @@ interface ListCardProps {
     handleDelete?: () => void;
     handleLike?: () => void;
     likeLoading: boolean;
-}
+} 
 
 const ListCard: React.FC<ListCardProps> = ({ post, handleEdit, handleDelete, handleLike, likeLoading }) => {
     const { data: session } = useSession();
@@ -56,7 +56,7 @@ const ListCard: React.FC<ListCardProps> = ({ post, handleEdit, handleDelete, han
                 />
                 <div className="ml-3">
                     <h3 className="text-sm font-medium cursor-pointer" onClick={handleProfileClick}>{post.creator.username}</h3>
-                    <p className="text-xs text-green-700 font-bold mb-2 mr-auto">Created At {readableCreatedAt}</p>
+                    <p className="text-xs text-[#008000] font-bold mb-2 mr-auto">Created At {readableCreatedAt}</p>
                 </div>
             </div>
 
@@ -78,17 +78,17 @@ const ListCard: React.FC<ListCardProps> = ({ post, handleEdit, handleDelete, han
                 <h3 className="text-base font-medium mb-2">{post.title}</h3>
                 <p className="text-sm text-gray-700 mb-2">{isExpanded ? post.walkthrough : `${post.walkthrough.slice(0, 70)}...`}
                     <button
-                        className="text-green-500 ml-1"
+                        className="text-[#008000] ml-1"
                         onClick={toggleReadMore}
                     >
                         {isExpanded ? 'Read Less' : 'Read More'}
                     </button>
                 </p>
-                <p className="text-xs bg-orange-600 rounded-md px-2 text-white mb-2">{post.ingredients}</p>
-                <p className="text-sm text-green-700 font-bold mb-2">#{post.categories}</p>
+                <p className="text-xs bg-[#008000] rounded-md p-2 text-white mb-2">{post.ingredients}</p>
+                <p className="text-sm text-[#008000] font-bold mb-2">#{post.categories}</p>
                 <div className="flex items-center text-xs text-gray-500 mr-auto">
                     <ClockIcon className="h-4 w-4" />
-                    <span className="ml-1 text-green-700">{post.time} Min</span>
+                    <span className="ml-1 text-[#008000]">{post.time} Min</span>
                 </div>
             </div>
 

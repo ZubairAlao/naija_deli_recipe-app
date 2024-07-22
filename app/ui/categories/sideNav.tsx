@@ -38,9 +38,9 @@ export default function SideNav({ data, categoryClick }: SideNavProps) {
   }, []);
 
   return (
-    <div className='fixed top-12 left-0 md:h-auto w-full md:w-48 bg-green-900 shadow-md z-20'>
+    <div className='fixed top-12 left-0 md:h-auto w-full md:w-48 bg-[#008000] shadow-md z-20'>
       <div className='pt-4 md:py-14'>
-        <div className='flex gap-2 justify-center text-green-300'>
+        <div className='flex gap-2 justify-center text-white'>
           <p>Categories</p>
           <TagIcon className='h-5 w-5' />
         </div>
@@ -50,7 +50,7 @@ export default function SideNav({ data, categoryClick }: SideNavProps) {
             <button
               key={category}
               onClick={() => categoryClick(category)}
-              className='block py-2 px-4 text-green-300 hover:bg-green-700 hover:text-white transition duration-200'
+              className='block py-2 px-4 text-white hover:text-[#ffa500] transition duration-200'
             >
               {category}
             </button>
