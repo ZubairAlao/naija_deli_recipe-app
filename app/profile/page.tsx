@@ -46,7 +46,9 @@ interface Post {
                 setLoading(true);
                 const response = await fetch(`/api/users/${session?.user?.id}/posts`)
                 const data: Post[] = await response.json();
-                setMyPosts(data)
+                const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+                setMyPosts(sortedData)
             } catch (error) {
                 console.log(error);
             } finally {

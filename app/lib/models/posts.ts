@@ -42,6 +42,7 @@ const PostSchema = new Schema({
     categories: {
         type: String,
         required: [true, 'Category is required'],
+        trim: true,
     },
 },
 

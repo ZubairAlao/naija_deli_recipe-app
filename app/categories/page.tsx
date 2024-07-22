@@ -91,7 +91,8 @@ export default function Page() {
       }
 
       const data = await response.json();
-      setCategoryPosts(data);
+      const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setCategoryPosts(sortedData);
       setError(null); // Clear any previous errors
     } catch (error) {
       if (error instanceof Error) {
@@ -196,7 +197,7 @@ export default function Page() {
   const postsToDisplay = categoryResults.length > 0 ? categoryResults : categoryPosts;
 
   return (
-    <section className="flex py-8">
+    <section className="flex py-12">
       <div>
         <SideNav data={categoryPosts} categoryClick={handleCategoryClick}/>
       </div>

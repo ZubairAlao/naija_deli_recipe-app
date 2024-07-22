@@ -17,7 +17,7 @@ export function GreenButton({ children, className, ...rest }: ButtonProps) {
   return (
     <button
       {...rest}
-      className={`flex h-8 items-center rounded-lg bg-gradient-to-r from-green-500 via-green-400 to-green-300 px-2 text-sm font-medium text-white transition-colors hover:bg-gradient-to-r hover:from-green-400 hover:via-green-300 hover:to-green-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 active:bg-gradient-to-r active:from-green-600 active:via-green-500 active:to-green-400 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ${className}`}
+      className={`flex h-8 items-center rounded-lg bg-gradient-to-r from-green-500 via-green-400 to-green-300 px-2 text-sm font-medium text-white transition-colors hover:bg-gradient-to-r hover:from-green-400 hover:via-green-300 hover:to-green-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 active:bg-gradient-to-r active:from-green-600 active:via-green-500 active:to-green-400 disabled:cursor-not-allowed disabled:opacity-50 disabled:from-gray-600 disabled:via-gray-500 disabled:to-gray-400 ${className}`}
     >
       {children}
     </button>

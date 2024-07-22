@@ -55,8 +55,9 @@ interface Post {
           setLoading(true);
           const response = await fetch(`/api/users/${params?.id}/posts`);
           const data: Post[] = await response.json();
-  
-          setUserPosts(data);
+
+          const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+          setUserPosts(sortedData);
           setError(null);
         } catch (error) {
           if (error instanceof Error) {

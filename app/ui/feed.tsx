@@ -82,6 +82,7 @@ const Feed: React.FC = () => {
   const [searchText, setSearchText] = useState('');
   const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(null);
   const [searchedResults, setSearchedResults] = useState<Post[]>([]);
+  const [sortCriteria, setSortCriteria] = useState<'latest' | 'popular'>('latest');
   const { data: session } = useSession();
 
   const router = useRouter();
@@ -96,7 +97,9 @@ const Feed: React.FC = () => {
       }
 
       const data = await response.json();
-      setAllPosts(data);
+      const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+      setAllPosts(sortedData);
       setError(null); // Clear any previous errors
     } catch (error) {
       if (error instanceof Error) {
@@ -196,10 +199,10 @@ const Feed: React.FC = () => {
 
         // Update searchedResults if it's being displayed
         if (searchedResults.length > 0) {
-          const updatedCategoryResults = searchedResults.map(p =>
+          const updatedSearchedResults = searchedResults.map(p =>
             p._id === post._id ? { ...p, likes: data.likes } : p
           );
-          setSearchedResults(updatedCategoryResults);
+          setSearchedResults(updatedSearchedResults);
         }
       }
     } catch (error) {
@@ -210,12 +213,36 @@ const Feed: React.FC = () => {
   };
   
 
+  const handlePopularClick = () => {
+    setSortCriteria('popular');
+    const sortedByLikes = [...allPosts].sort((a, b) => b.likes - a.likes);
+    setAllPosts(sortedByLikes);
+
+    // Update searchedResults if it's being displayed
+    if (searchedResults.length > 0) {
+      const sortedByLikes = [...searchedResults].sort((a, b) => b.likes - a.likes);
+      setSearchedResults(sortedByLikes);
+    }
+  };
+
+  const handleLatestClick = () => {
+    setSortCriteria('latest');
+    const sortedByDate = [...allPosts].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    setAllPosts(sortedByDate);
+
+    // Update searchedResults if it's being displayed
+    if (searchedResults.length > 0) {
+      const sortedByDate = [...searchedResults].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setSearchedResults(sortedByDate);
+    }
+  };
+
 
   console.log(allPosts);
   
 
   return (
-    <section className="px-8">
+    <section className="px-8 w-full max-w-7xl mx-auto">
       <div className="py-4 space-y-5 mb-8">
         <Search searchText={searchText}  handleSearchChange={handleSearchChange}/>
         {searchedResults.length > 0 ?
@@ -227,10 +254,12 @@ const Feed: React.FC = () => {
         </div>
          }
       </div>
-      <div className="flex gap-4">
-        <GreenButton>Popular</GreenButton>
-        <GreenButton>Latest</GreenButton>
-        {/* <p className="text-2xl font-semibold mb-4">Posts</p> */}
+      <div className="flex">
+        <p className="text-2xl font-semibold mb-4"> {sortCriteria === "latest" ? "Latest" : "Popular"} Posts</p>
+        <div className="flex gap-4 ml-auto">
+        <GreenButton onClick={handlePopularClick} disabled={sortCriteria === "popular"}>Popular Posts</GreenButton>
+        <GreenButton onClick={handleLatestClick} disabled={sortCriteria === "latest"}>Latest Posts</GreenButton>
+        </div>
       </div>
       {error && <div className="text-red-500">{error}</div>}
 

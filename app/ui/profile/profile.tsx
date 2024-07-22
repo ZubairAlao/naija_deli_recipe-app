@@ -71,7 +71,7 @@ const Profile: React.FC<ProfileProps> = ({ name, desc, posts, loading, handleEdi
                 </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 w-full max-w-6xl mx-auto">
                 <h2 className="text-2xl font-semibold mb-4">{name} Posts</h2>
                 {loading && 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 px-8">
