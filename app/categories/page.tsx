@@ -204,7 +204,7 @@ export default function Page() {
 
       <div className="md:ml-48 p-8 w-full mt-20 md:mt-0">
       <div className="flex gap-2 items-center">
-        <p className={`text-${selectedCategory ? 'green-500' : 'orange-500'} font-semibold`}>
+        <p className={`text-${selectedCategory ? '#008000' : '#ffa500'} font-semibold`}>
           {selectedCategory ? `Category: ${selectedCategory}` : "All categories"}
         </p>
         {categoryResults.length > 0 ? 
