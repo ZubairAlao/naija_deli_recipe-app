@@ -84,7 +84,7 @@ export default function Page() {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/post', { cache: 'no-store' });
+      const response = await fetch('/api/post');
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
