@@ -82,7 +82,6 @@ export default function CreateRecipe() {
       });
 
       if (response.ok) {
-        router.refresh() // refresh and fetch new request
         router.push('/');
       }
     } catch (error) {

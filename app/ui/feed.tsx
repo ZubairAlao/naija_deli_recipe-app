@@ -90,9 +90,7 @@ const Feed: React.FC = () => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/post', {
-        next: { revalidate: 10 },
-      })
+      const response = await fetch('/api/post', { cache: 'no-store' })
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
