@@ -17,7 +17,7 @@ export const GET = async (request: NextRequest, { params }: Params): Promise<Nex
         const post = await Post.findById(params.id).populate('creator');
 
         if (!post) {
-            return new NextResponse("Prompt not found", {status: 404});
+            return new NextResponse("post not found", {status: 404});
         }
 
         return new NextResponse(JSON.stringify(post), { status: 200 })

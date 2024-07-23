@@ -38,7 +38,7 @@ interface Post {
     const [loading, setLoading] = useState(true);
 
     const userName = session?.user?.name || 'My';
-    const userImage =  '/usernamePic.png';
+    const userImage =  '/usernamePic.png'; 
 
     useEffect(() => {
         const fetchPosts = async () => {
