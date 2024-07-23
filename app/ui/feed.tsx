@@ -139,6 +139,8 @@ const Feed: React.FC = () => {
 
         const filteredPosts = allPosts.filter((p) => p._id !== post._id);
         setAllPosts(filteredPosts);
+
+        router.refresh() // refresh and fetch new request
       } catch (error) {
         console.log(error);
       }
@@ -207,6 +209,7 @@ const Feed: React.FC = () => {
           setSearchedResults(updatedSearchedResults);
         }
       }
+      router.refresh() // refresh and fetch new request
     } catch (error) {
       console.error('Error liking the post:', error);
     } finally {
