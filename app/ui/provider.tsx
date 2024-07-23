@@ -17,4 +17,4 @@ const Provider: React.FC<ProviderProps> = ({ children, session }) => {
   );
 };
 
-export default Provider;
+export default Provider; 

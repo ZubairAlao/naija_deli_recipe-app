@@ -147,6 +147,7 @@ function EditRecipe() {
       });
 
       if (response.ok) {
+        router.refresh() // refresh and fetch new request
         router.back();
       }
     } catch (error) {
