@@ -41,8 +41,8 @@ export default function SideNav({ data, categoryClick }: SideNavProps) {
   }, []);
 
   return (
-    <div className="fixed top-12 left-0 md:h-auto w-full md:w-48 bg-[#008000] shadow-md z-20">
-      <div className="pt-4 md:py-14 py-3 md:min-h-screen max-md:flex justify-between items-center px-6">
+    <div className="fixed top-12 left-0 md:h-auto w-full md:w-48 bg-[#008000] shadow-md z-20 md:min-h-[60%]">
+      <div className="pt-4 md:py-8 py-3 max-md:flex justify-between items-center px-6">
         <div className="flex gap-2 justify-center text-white">
           <p>Categories</p>
           <TagIcon className="h-5 w-5" />
