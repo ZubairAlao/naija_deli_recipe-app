@@ -6,6 +6,7 @@ import { ListCardSkeleton } from "@/app/ui/skeletons";
 import { useState, useEffect } from "react";
 import SideNav from '@/app/ui/categories/sideNav';
 import { useSession } from "next-auth/react";
+import { fetchWithRetry } from "@/utils/fetchRetry";
 
 
 interface Post {
@@ -84,8 +85,8 @@ export default function Page() {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/post');
-
+      const response = await fetchWithRetry("/api/prompt", {}, 3, 1000);
+      // const response = await fetch('/api/post');
       // if (!response.ok) {
       //   throw new Error(`Error: ${response.status} ${response.statusText}`);
       // }

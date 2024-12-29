@@ -8,6 +8,7 @@ import { GreenButton } from "@/app/ui/button";
 import ListCard from "@/app/ui/list-card";
 import { useRouter } from 'next/navigation';
 import { ListCardSkeleton } from "./skeletons";
+import { fetchWithRetry } from "@/utils/fetchRetry";
 
 
 
@@ -90,7 +91,9 @@ const Feed: React.FC = () => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/post')
+      
+      const response = await fetchWithRetry("/api/prompt", {}, 3, 1000);
+      // const response = await fetch('/api/post')
 
       // if (!response.ok) {
       //   throw new Error(`Error: ${response.status} ${response.statusText}`);
