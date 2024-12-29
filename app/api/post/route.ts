@@ -12,6 +12,7 @@ export const GET = async (request: NextRequest): Promise<NextResponse> => {
 
           return new NextResponse(JSON.stringify(posts), { status: 200 })
     } catch (error) {
+        console.error("Error fetching posts:", error);
         return new NextResponse("Failed to fetch all posts", { status: 500 })
     }
 }

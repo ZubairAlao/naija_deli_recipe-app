@@ -9,13 +9,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Log the environment variables to ensure they are set
-console.log('Cloudinary Configuration:', {
-  CloudName: process.env.CLOUDINARY_CLOUD_NAME,
-  APIKey: process.env.CLOUDINARY_API_KEY,
-  APISecret: process.env.CLOUDINARY_API_SECRET
-});
-
 export const POST = async (request: NextRequest): Promise<NextResponse> => {
     const {public_id} = await request.json();
     try {

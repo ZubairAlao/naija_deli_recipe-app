@@ -81,63 +81,30 @@ export default function Page() {
   const { data: session } = useSession();
   const [likeLoading, setLikeLoading] = useState<Record<string, boolean>>({});
 
-  // const fetchPosts = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetch('/api/post');
-
-  //     if (!response.ok) {
-  //       throw new Error(`Error: ${response.status} ${response.statusText}`);
-  //     }
-
-  //     const data = await response.json();
-  //     const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-  //     setCategoryPosts(sortedData);
-  //     setError(null); // Clear any previous errors
-  //   } catch (error) {
-  //     if (error instanceof Error) {
-  //       setError(error.message);
-  //     } else {
-  //       setError('An unexpected error occurred.');
-  //     }
-  //   } finally {
-  //     setLoading(false); 
-  //   }
-  // };
-
   const fetchPosts = async () => {
     setLoading(true);
-    let attempts = 0;
-    const maxRetries = 3;
-  
-    while (attempts < maxRetries) {
-      try {
-        const response = await fetch('/api/post');
-  
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} ${response.statusText}`);
-        }
-  
-        const data = await response.json();
-        const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-        setCategoryPosts(sortedData);
-        setError(null); // Clear any previous errors
-        break; // Exit the loop if the fetch was successful
-      } catch (error) {
-        attempts += 1;
-        if (attempts === maxRetries) {
-          if (error instanceof Error) {
-            setError(error.message);
-          } else {
-            setError('An unexpected error occurred.');
-          }
-        }
-      } finally {
-        setLoading(false);
+    try {
+      const response = await fetch('/api/post');
+
+      // if (!response.ok) {
+      //   throw new Error(`Error: ${response.status} ${response.statusText}`);
+      // }
+
+      const data = await response.json();
+      const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setCategoryPosts(sortedData);
+      setError(null); // Clear any previous errors
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unexpected error occurred.');
       }
+    } finally {
+      setLoading(false); 
     }
   };
-  
+
   const handleEdit = (post: Post) => {
     router.push(`/edit-recipe?id=${post._id}`);
   };
@@ -224,8 +191,6 @@ export default function Page() {
       setLikeLoading(prev => ({ ...prev, [post._id]: false }));
     }
   };
-
-  console.log(categoryPosts);
 
   const postsToDisplay = categoryResults.length > 0 ? categoryResults : categoryPosts;
 
