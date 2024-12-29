@@ -87,7 +87,8 @@ export default function Page() {
       const response = await fetch('/api/post');
 
       if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        // throw new Error(`Error: ${response.status} ${response.statusText}`);
+        throw new Error(`Error: Refresh the browser to continue`);
       }
 
       const data = await response.json();
