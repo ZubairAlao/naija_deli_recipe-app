@@ -1,8 +1,8 @@
-export const dynamic = 'force-dynamic'
-
 import { connectToDB } from "@/utils/database";
 import Post from "@/app/lib/models/posts";
 import { NextRequest, NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic'
 
 export const GET = async (request: NextRequest): Promise<NextResponse> => {
     try {
