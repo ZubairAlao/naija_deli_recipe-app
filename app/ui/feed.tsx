@@ -90,7 +90,9 @@ const Feed: React.FC = () => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/post')
+      // const response = await fetch('/api/post')
+      const response = await fetch(`/api/post?timestamp=${new Date().getTime()}`)
+  
 
       if (!response.ok) {
         // throw new Error(`Error: ${response.status} ${response.statusText}`);
