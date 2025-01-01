@@ -84,7 +84,6 @@ const FoodCategories: React.FC<{ recipeData: Post[] }> = ({ recipeData }) => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-
       const sortedData = recipeData.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setCategoryPosts(sortedData);
       setError(null); // Clear any previous errors

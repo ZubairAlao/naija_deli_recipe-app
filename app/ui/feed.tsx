@@ -74,7 +74,7 @@ const ListCardPosts: React.FC<ListCardPostsProps> = ({ data, loading, handleEdit
   );
 };
 
-const Feed: React.FC = () => {
+const Feed: React.FC<{ recipeData: Post[] }> = ({ recipeData }) => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -90,16 +90,8 @@ const Feed: React.FC = () => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/post')
 
-      if (!response.ok) {
-        // throw new Error(`Error: ${response.status} ${response.statusText}`);
-        throw new Error(`Error: Refresh the browser to continue`);
-      }
-
-      const data = await response.json();
-      console.log("data bullshit", data)
-      const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      const sortedData = recipeData.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
       setAllPosts(sortedData);
       setError(null); // Clear any previous errors
