@@ -148,42 +148,50 @@ const FoodCategories: React.FC<{ recipeData: Post[] }> = ({ recipeData }) => {
 
   const handleLike = async (post: Post) => {
     if (!session) {
-      alert('You must be logged in to like a post.');
-      return;
+        alert('You must be logged in to like a post.');
+        return;
     }
+    
     setLikeLoading(prev => ({ ...prev, [post._id]: true }));
+
     try {
-      const res = await fetch(`/api/likes/${post._id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId: session?.user?.id }), // Send userId in request body
-      });
+        // Send the user's ID to the backend and update likes
+        const res = await fetch(`/api/likes/${post._id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId: session?.user?.id }), // Send userId in request body
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (res.ok) {
-        // Update categoryPosts
-        const updatedCategoryPosts = categoryPosts.map(p =>
-          p._id === post._id ? { ...p, likes: data.likes } : p
-        );
-        setCategoryPosts(updatedCategoryPosts);
+        if (res.ok) {
+            // Update the likes and likedBy locally after a successful like/unlike
+            const updatedCategoryPosts = categoryPosts.map((p) =>
+                p._id === post._id
+                    ? { ...p, likes: data.likes, likedBy: data.likedBy } // Update both likes and likedBy
+                    : p
+            );
+            setCategoryPosts(updatedCategoryPosts);
 
-        // Update categoryResults if it's being displayed
-        if (categoryResults.length > 0) {
-          const updatedCategoryResults = categoryResults.map(p =>
-            p._id === post._id ? { ...p, likes: data.likes } : p
-          );
-          setCategoryResults(updatedCategoryResults);
+            // If there are categoryResults, update them as well
+            if (categoryResults.length > 0) {
+                const updatedCategoryResults = categoryResults.map((p) =>
+                    p._id === post._id
+                        ? { ...p, likes: data.likes, likedBy: data.likedBy } // Same update for categoryResults
+                        : p
+                );
+                setCategoryResults(updatedCategoryResults);
+            }
         }
-      }
     } catch (error) {
-      console.error('Error liking the post:', error);
+        console.error('Error liking the post:', error);
     } finally {
-      setLikeLoading(prev => ({ ...prev, [post._id]: false }));
+        setLikeLoading(prev => ({ ...prev, [post._id]: false }));
     }
-  };
+};
+
 
   const postsToDisplay = categoryResults.length > 0 ? categoryResults : categoryPosts;
 

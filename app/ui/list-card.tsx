@@ -106,7 +106,7 @@ const ListCard: React.FC<ListCardProps> = ({ post, handleEdit, handleDelete, han
                         <div className="bg-gray-500 shadow-sm rounded-full w-1 h-1"></div>
                         <div className="bg-gray-500 shadow-sm rounded-full w-1 h-1"></div>
                     </div> : 
-                    <HeartIcon className={`h-5 w-5 cursor-pointer ${userLiked() ? 'text-red-500' : 'text-gray-500'} hover:text-red-400 shadow-sm`} onClick={handleLike} />
+                    <HeartIcon className={`h-5 w-5 cursor-pointer ${userLiked() ? 'text-red-500' : 'text-gray-500'} hover:text-red-400`} onClick={handleLike} />
                 )}
                     <span className="ml-1 text-sm">{post.likes} likes </span>
                 </div>
