@@ -1,5 +1,5 @@
 import Feed from "@/app/ui/feed";
-export const dynamic = 'force-dynamic';
+
 
 export default async function Home() {
 

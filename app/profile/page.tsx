@@ -95,35 +95,69 @@ interface Post {
         }
       };
 
+      // const handleLike = async (post: Post) => {
+      //   if (!session) {
+      //     alert('You must be logged in to like a post.');
+      //     return;
+      //   }
+      //   setLikeLoading(prev => ({ ...prev, [post._id]: true }));
+      //   try {
+      //     const res = await fetch(`/api/likes/${post._id}`, {
+      //       method: 'POST',
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify({ userId: session?.user?.id }), // Send userId in request body
+      //     });
+    
+      //     const data = await res.json();
+    
+      //     if (res.ok) {
+      //       const updatedPosts = myPosts.map(p =>
+      //         p._id === post._id ? { ...p, likes: data.likes } : p
+      //       );
+      //       setMyPosts(updatedPosts);
+      //     }
+      //   } catch (error) {
+      //     console.error('Error liking the post:', error);
+      //   } finally {
+      //     setLikeLoading(prev => ({ ...prev, [post._id]: false }));
+      //   }
+      // };
       const handleLike = async (post: Post) => {
         if (!session) {
-          alert('You must be logged in to like a post.');
-          return;
+            alert('You must be logged in to like a post.');
+            return;
         }
         setLikeLoading(prev => ({ ...prev, [post._id]: true }));
+    
         try {
-          const res = await fetch(`/api/likes/${post._id}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ userId: session?.user?.id }), // Send userId in request body
-          });
+            const res = await fetch(`/api/likes/${post._id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: session?.user?.id }), // Send userId in request body
+            });
     
-          const data = await res.json();
+            const data = await res.json();
     
-          if (res.ok) {
-            const updatedPosts = myPosts.map(p =>
-              p._id === post._id ? { ...p, likes: data.likes } : p
-            );
-            setMyPosts(updatedPosts);
-          }
+            if (res.ok) {
+                // Update the local posts state immediately after liking
+                const updatedPosts = myPosts.map((p) =>
+                    p._id === post._id
+                        ? { ...p, likes: data.likes, likedBy: data.likedBy } // Update both likes and likedBy list
+                        : p
+                );
+                setMyPosts(updatedPosts);
+            }
         } catch (error) {
-          console.error('Error liking the post:', error);
+            console.error('Error liking the post:', error);
         } finally {
-          setLikeLoading(prev => ({ ...prev, [post._id]: false }));
+            setLikeLoading(prev => ({ ...prev, [post._id]: false }));
         }
-      };
+    };
+    
 
     if (!session?.user) {
         return (

@@ -140,6 +140,7 @@ const Feed: React.FC<{ recipeData: Post[] }> = ({ recipeData }) => {
   };
 
   useEffect(() => {
+    router.refresh()
     fetchPosts();
   }, []);
 
