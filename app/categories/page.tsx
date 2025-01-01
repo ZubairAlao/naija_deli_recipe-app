@@ -1,5 +1,5 @@
 import FoodCategories from "@/app/ui/categories/foodCategories";
-
+export const dynamic = 'force-dynamic';
 // Fetch data on the server
 export default async function Page() {
   try {
