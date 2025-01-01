@@ -266,7 +266,9 @@ const Feed: React.FC = () => {
         <GreenButton onClick={handleLatestClick} disabled={sortCriteria === "latest"}>Latest</GreenButton>
         </div>
       </div>
-      {error && <div className="text-red-500">{error}</div>}
+      {error && <div className="text-red-500">
+        {error}
+      </div>}
 
       <div className="mr-auto">
         <ListCardPosts
