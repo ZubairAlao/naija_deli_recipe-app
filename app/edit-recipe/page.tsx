@@ -38,25 +38,7 @@ function EditRecipe() {
   });
 
   useEffect(() => {
-    // const getRecipeDetails = async() => {
-    //   const response = await fetch(`/api/post/${recipeId}`)
-    //   if (!response.ok) {
-    //     throw new Error('Failed to fetch recipe details');
-    //   }
-
-    //   const data = await response.json();
-
-    //   setFormData({
-    //     title: data.title,
-    //     description: data.description,
-    //     time: data.time,
-    //     imageUrl: data.imageUrl,
-    //     imagePublicId: data.imagePublicId,
-    //     ingredients: data.ingredients,
-    //     walkthrough: data.walkthrough,
-    //     categories: data.categories
-    //   })
-    // }
+  
     const getRecipeDetails = async () => {
       try {
         const response = await fetch(`/api/post/${recipeId}`);
@@ -149,6 +131,7 @@ function EditRecipe() {
       if (response.ok) {
         router.back();
       }
+      router.refresh()
     } catch (error) {
       console.log(error);
     } finally {
@@ -160,7 +143,7 @@ function EditRecipe() {
 
   if (!session?.user) {
     return (
-        <div className='h-screen w-full flex flex-col justify-center items-center bg-gray-100'>
+        <div className='h-screen w-full flex flex-col justify-center items-center text-center px-4 bg-gray-100'>
             <p className='animate-bounce text-2xl font-semibold text-gray-800 mb-4'>
                 Oops! You are not signed in.
             </p>

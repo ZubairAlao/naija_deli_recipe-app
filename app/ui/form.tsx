@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+
 
 interface FormProps {
     type: string;
@@ -31,7 +31,7 @@ interface FormProps {
 }
 
 export default function Form({ type, formData, setFormData, submitting, handleSubmit, isEditMode }: FormProps) {
-    const router = useRouter();
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -52,7 +52,10 @@ export default function Form({ type, formData, setFormData, submitting, handleSu
     }
 
       // Determine the cancel button's destination
-      const cancelDestination = router.pathname === '/categories' ? '/categories' : '/';
+      const cancelDestination =
+        typeof window !== 'undefined' && window.location.pathname === '/categories'
+            ? '/categories'
+            : '/';
 
     return (
         <section className="w-full max-w-3xl flex flex-col items-start p-6 bg-white shadow-lg rounded-lg my-20 mx-auto">
