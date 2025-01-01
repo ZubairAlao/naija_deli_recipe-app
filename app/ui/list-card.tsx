@@ -5,7 +5,7 @@ import { HeartIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Post } from "@/app/ui/types";
 import { convertToReadableDate } from "@/utils/dateUtils";
 
@@ -23,10 +23,14 @@ const ListCard: React.FC<ListCardProps> = ({ post, handleEdit, handleDelete, han
     const router = useRouter();
     const [isExpanded, setIsExpanded] = useState(false);
 
+
     // const hasUserLiked = () => {
     //     const userId = session?.user?.id;
     //     return userId ? post.likedBy.includes(userId) : false;
     // };
+    const userLiked = () => {
+        return session?.user?.id ? post.likedBy.includes(session.user.id) : false;
+    }
 
     const handleProfileClick = () => {
         console.log(post);
@@ -102,9 +106,9 @@ const ListCard: React.FC<ListCardProps> = ({ post, handleEdit, handleDelete, han
                         <div className="bg-gray-500 shadow-sm rounded-full w-1 h-1"></div>
                         <div className="bg-gray-500 shadow-sm rounded-full w-1 h-1"></div>
                     </div> : 
-                    <HeartIcon className="h-5 w-5 cursor-pointer text-red-500 hover:text-red-400 shadow-sm" onClick={handleLike} />
+                    <HeartIcon className={`h-5 w-5 cursor-pointer ${userLiked() ? 'text-red-500' : 'text-gray-500'} hover:text-red-400 shadow-sm`} onClick={handleLike} />
                 )}
-                    <span className="ml-1 text-sm">{post.likes} likes</span>
+                    <span className="ml-1 text-sm">{post.likes} likes </span>
                 </div>
                 <div className="flex items-center">
                     {session && session.user?.id === post.creator?._id && (
