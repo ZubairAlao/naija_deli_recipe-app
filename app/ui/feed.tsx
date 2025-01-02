@@ -278,7 +278,7 @@ const Feed: React.FC = () => {
       {error && <div className="text-red-500">
          {/* <p>{error}</p> */}
          <p className="text-green-500">loading...</p>
-         <GreenButton className="flex justify-center my-6" onClick={() => window.location.reload()}>Refresh</GreenButton>
+         {/* <GreenButton className="flex justify-center my-6" onClick={() => window.location.reload()}>Refresh</GreenButton> */}
       </div>}
 
       <div className="mr-auto">

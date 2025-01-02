@@ -216,7 +216,7 @@ const FoodCategories: React.FC = () => {
       {error && <div className="text-red-500">
          {/* <p>{error}</p> */}
          <p className="text-green-500">...loading</p>
-         <GreenButton className="flex justify-center my-6" onClick={() => window.location.reload()}>Refresh</GreenButton>
+         {/* <GreenButton className="flex justify-center my-6" onClick={() => window.location.reload()}>Refresh</GreenButton> */}
       </div>}
       <div className="flex gap-2 items-center">
         <p className={`text-${selectedCategory ? '#008000' : '#ffa500'} font-semibold`}>
