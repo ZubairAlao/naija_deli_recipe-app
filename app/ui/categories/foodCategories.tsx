@@ -6,6 +6,7 @@ import { ListCardSkeleton } from "@/app/ui/skeletons";
 import { useState, useEffect } from "react";
 import SideNav from '@/app/ui/categories/sideNav';
 import { useSession } from "next-auth/react";
+import { GreenButton } from "../button";
 
 
 interface Post {
@@ -87,7 +88,10 @@ const FoodCategories: React.FC = () => {
       const response = await fetch(`/api/post/`);
 
       if(!response.ok) {
-        throw new Error(`Error: ${response.status} : ${response.statusText}`)
+        fetchPosts();
+        // throw new Error(`Error: ${response.status} : ${response.statusText}`)
+        throw new Error(`Slow Server Detected, Kindly Refresh to Continue `)
+        
       }
 
       const data = await response.json()
@@ -209,6 +213,10 @@ const FoodCategories: React.FC = () => {
       </div>
 
       <div className="md:ml-48 p-8 w-full mt-20 md:mt-0">
+      {error && <div className="text-red-500">
+         <p>{error}</p>
+         <GreenButton className="flex justify-center my-6" onClick={fetchPosts}>Refresh</GreenButton>
+      </div>}
       <div className="flex gap-2 items-center">
         <p className={`text-${selectedCategory ? '#008000' : '#ffa500'} font-semibold`}>
           {selectedCategory ? `Category: ${selectedCategory}` : "All categories"}

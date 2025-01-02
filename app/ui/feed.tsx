@@ -8,6 +8,7 @@ import { GreenButton } from "@/app/ui/button";
 import ListCard from "@/app/ui/list-card";
 import { useRouter } from 'next/navigation';
 import { ListCardSkeleton } from "./skeletons";
+import Link from "next/link";
 
 
 
@@ -93,7 +94,9 @@ const Feed: React.FC = () => {
       const response = await fetch(`/api/post/`);
 
       if(!response.ok) {
-        throw new Error(`Error: ${response.status} : ${response.statusText}`)
+        // throw new Error(`Error: ${response.status} : ${response.statusText}`)
+        fetchPosts();
+        throw new Error(`Slow Server Detected, Kindly Refresh to Continue `)
       }
 
       const data = await response.json()
@@ -201,7 +204,7 @@ const Feed: React.FC = () => {
             // Update the local posts state immediately after liking
             const updatedPosts = allPosts.map((p) =>
                 p._id === post._id
-                    ? { ...p, likes: data.likes, likedBy: data.likedBy } // Update both likes and likedBy list
+                    ? { ...p, likes: data.likes, likedBy: data.likedBy }
                     : p
             );
             setAllPosts(updatedPosts);
@@ -210,7 +213,7 @@ const Feed: React.FC = () => {
             if (searchedResults.length > 0) {
                 const updatedSearchedResults = searchedResults.map((p) =>
                     p._id === post._id
-                        ? { ...p, likes: data.likes, likedBy: data.likedBy } // Same update for searched results
+                        ? { ...p, likes: data.likes, likedBy: data.likedBy }
                         : p
                 );
                 setSearchedResults(updatedSearchedResults);
@@ -273,7 +276,8 @@ const Feed: React.FC = () => {
         </div>
       </div>
       {error && <div className="text-red-500">
-        {error}
+         <p>{error}</p>
+         <GreenButton className="flex justify-center my-6" onClick={fetchPosts}>Refresh</GreenButton>
       </div>}
 
       <div className="mr-auto">

@@ -43,7 +43,8 @@ export default function Recommended() {
       const response = await fetch('/api/post', { next: { revalidate: 10 } });
 
       if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        // throw new Error(`Error: ${response.status} ${response.statusText}`);
+        throw new Error(`Slow Server Detected, Kindly Refresh to Continue `)
       }
 
       const data = await response.json();
@@ -66,7 +67,7 @@ export default function Recommended() {
   }, []);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="text-red-500">{error}</div>;
   }
 
   if (!post) {
