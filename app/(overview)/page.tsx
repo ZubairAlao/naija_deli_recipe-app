@@ -1,4 +1,5 @@
 import Feed from "@/app/ui/feed";
+import { GetServerSideProps } from 'next';
 
 export default async function Home() {
 

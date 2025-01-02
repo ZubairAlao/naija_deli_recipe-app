@@ -97,6 +97,7 @@ const Feed: React.FC = () => {
       }
 
       const data = await response.json()
+       console.log("from response", data);
 
       const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
@@ -248,7 +249,7 @@ const Feed: React.FC = () => {
   };
 
 
-  console.log(allPosts);
+  // console.log(allPosts);
   
 
   return (
