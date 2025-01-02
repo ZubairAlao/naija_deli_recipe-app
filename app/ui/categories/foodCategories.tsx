@@ -196,6 +196,7 @@ const FoodCategories: React.FC = () => {
         console.error('Error liking the post:', error);
     } finally {
         setLikeLoading(prev => ({ ...prev, [post._id]: false }));
+        fetchPosts()
     }
 };
 
