@@ -95,7 +95,7 @@ const Feed: React.FC = () => {
 
       if(!response.ok) {
         // throw new Error(`Error: ${response.status} : ${response.statusText}`)
-        fetchPosts();
+        window.location.reload()
         throw new Error(`Slow Server Detected, Kindly Refresh to Continue `)
       }
 
@@ -277,7 +277,7 @@ const Feed: React.FC = () => {
       </div>
       {error && <div className="text-red-500">
          <p>{error}</p>
-         <GreenButton className="flex justify-center my-6" onClick={fetchPosts}>Refresh</GreenButton>
+         <GreenButton className="flex justify-center my-6" onClick={() => window.location.reload()}>Refresh</GreenButton>
       </div>}
 
       <div className="mr-auto">

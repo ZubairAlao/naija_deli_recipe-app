@@ -88,7 +88,7 @@ const FoodCategories: React.FC = () => {
       const response = await fetch(`/api/post/`);
 
       if(!response.ok) {
-        fetchPosts();
+        window.location.reload()
         // throw new Error(`Error: ${response.status} : ${response.statusText}`)
         throw new Error(`Slow Server Detected, Kindly Refresh to Continue `)
         
@@ -215,7 +215,7 @@ const FoodCategories: React.FC = () => {
       <div className="md:ml-48 p-8 w-full mt-20 md:mt-0">
       {error && <div className="text-red-500">
          <p>{error}</p>
-         <GreenButton className="flex justify-center my-6" onClick={fetchPosts}>Refresh</GreenButton>
+         <GreenButton className="flex justify-center my-6" onClick={() => window.location.reload()}>Refresh</GreenButton>
       </div>}
       <div className="flex gap-2 items-center">
         <p className={`text-${selectedCategory ? '#008000' : '#ffa500'} font-semibold`}>
