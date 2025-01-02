@@ -74,7 +74,7 @@ const ListCardPosts: React.FC<ListCardPostsProps> = ({ data, loading, handleEdit
   );
 };
 
-const Feed: React.FC<{ recipeData: Post[] }> = ({ recipeData }) => {
+const Feed: React.FC = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -90,8 +90,15 @@ const Feed: React.FC<{ recipeData: Post[] }> = ({ recipeData }) => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
+      const response = await fetch(`/api/post/`);
 
-      const sortedData = recipeData.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      if(!response.ok) {
+        throw new Error(`Error: ${response.status} : ${response.statusText}`)
+      }
+
+      const data = await response.json()
+
+      const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
       setAllPosts(sortedData);
       setError(null); // Clear any previous errors
@@ -171,45 +178,6 @@ const Feed: React.FC<{ recipeData: Post[] }> = ({ recipeData }) => {
     setSearchTimeout(timeout);
   };
 
-  // const handleLike = async (post: Post) => {
-  //   if (!session) {
-  //     alert('You must be logged in to like a post.');
-  //     return;
-  //   }
-  //   setLikeLoading(prev => ({ ...prev, [post._id]: true }));
-  //   try {
-  //     const res = await fetch(`/api/likes/${post._id}`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ userId: session?.user?.id }), // Send userId in request body
-  //     });
-
-  //     const data = await res.json();
-
-  //     if (res.ok) {
-  //       const updatedPosts = allPosts.map(p =>
-  //         p._id === post._id ? { ...p, likes: data.likes } : p
-  //       );
-  //       setAllPosts(updatedPosts);
-
-  //       // Update searchedResults if it's being displayed
-  //       if (searchedResults.length > 0) {
-  //         const updatedSearchedResults = searchedResults.map(p =>
-  //           p._id === post._id ? { ...p, likes: data.likes } : p
-  //         );
-  //         setSearchedResults(updatedSearchedResults);
-  //       }
-  //     }
-  //     router.refresh() // refresh and fetch new request
-  //   } catch (error) {
-  //     console.error('Error liking the post:', error);
-  //   } finally {
-  //     setLikeLoading(prev => ({ ...prev, [post._id]: false }));
-  //   }
-  // };
-  
   const handleLike = async (post: Post) => {
     if (!session) {
         alert('You must be logged in to like a post.');

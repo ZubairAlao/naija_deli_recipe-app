@@ -71,7 +71,7 @@ const ListCardPosts: React.FC<ListCardPostsProps> = ({ data, loading, handleEdit
   );
 };
 
-const FoodCategories: React.FC<{ recipeData: Post[] }> = ({ recipeData }) => {
+const FoodCategories: React.FC = () => {
   const [categoryPosts, setCategoryPosts] = useState<Post[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -84,7 +84,14 @@ const FoodCategories: React.FC<{ recipeData: Post[] }> = ({ recipeData }) => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const sortedData = recipeData.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      const response = await fetch(`/api/post/`);
+
+      if(!response.ok) {
+        throw new Error(`Error: ${response.status} : ${response.statusText}`)
+      }
+
+      const data = await response.json()
+      const sortedData = data.sort((a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setCategoryPosts(sortedData);
       setError(null); // Clear any previous errors
     } catch (error) {
