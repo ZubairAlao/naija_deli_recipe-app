@@ -214,7 +214,8 @@ const FoodCategories: React.FC = () => {
 
       <div className="md:ml-48 p-8 w-full mt-20 md:mt-0">
       {error && <div className="text-red-500">
-         <p>{error}</p>
+         {/* <p>{error}</p> */}
+         <p className="text-green-500">...loading</p>
          <GreenButton className="flex justify-center my-6" onClick={() => window.location.reload()}>Refresh</GreenButton>
       </div>}
       <div className="flex gap-2 items-center">
