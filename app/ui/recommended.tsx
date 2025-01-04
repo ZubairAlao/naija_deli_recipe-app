@@ -67,7 +67,10 @@ export default function Recommended() {
   }, []);
 
   if (error) {
-    return <div className="text-red-500">{error}</div>;
+    return <div className="text-green-500">
+      {/* {error} */}
+      Loading...
+    </div>;
   }
 
   if (!post) {

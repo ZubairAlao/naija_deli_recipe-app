@@ -144,7 +144,7 @@ function EditRecipe() {
   if (!session?.user) {
     return (
         <div className='h-screen w-full flex flex-col justify-center items-center text-center px-4 bg-gray-100'>
-            <p className='animate-bounce text-2xl font-semibold text-gray-800 mb-4'>
+            <p className='animate-bounce text-2xl font-semibold text-gray-800 mb-4 text-center'>
                 Oops! You are not signed in.
             </p>
             <p className='text-lg text-gray-600 mb-8'>

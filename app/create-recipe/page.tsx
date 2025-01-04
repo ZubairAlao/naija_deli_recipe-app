@@ -95,8 +95,8 @@ export default function CreateRecipe() {
 
   if (!session?.user) {
     return (
-        <div className='h-screen w-full flex flex-col justify-center items-center bg-gray-100'>
-            <p className='animate-bounce text-2xl font-semibold text-gray-800 mb-4'>
+        <div className='h-screen w-full flex flex-col justify-center items-center bg-gray-100 px-6'>
+            <p className='animate-bounce text-2xl font-semibold text-gray-800 mb-4 text-center'>
                 Oops! You are not signed in.
             </p>
             <p className='text-lg text-gray-600 mb-8'>
@@ -114,7 +114,7 @@ export default function CreateRecipe() {
       setFormData={setFormData}
       submitting={submitting}
       handleSubmit={createRecipe}
-      isEditMode={true}
+      isEditMode={false}
     />
   );
 }

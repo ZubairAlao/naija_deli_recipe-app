@@ -275,9 +275,9 @@ const Feed: React.FC = () => {
         <GreenButton onClick={handleLatestClick} disabled={sortCriteria === "latest"}>Latest</GreenButton>
         </div>
       </div>
-      {error && <div className="text-red-500">
+      {error && <div className="">
          {/* <p>{error}</p> */}
-         <p className="text-green-500">loading...</p>
+         <p className="text-green-500 ">loading...</p>
          {/* <GreenButton className="flex justify-center my-6" onClick={() => window.location.reload()}>Refresh</GreenButton> */}
       </div>}
 
