@@ -77,7 +77,7 @@ export default function CreateRecipe() {
           imagePublicId,
           ingredients: formData.ingredients,
           walkthrough: formData.walkthrough,
-          categories: formData.categories,
+          categories: formatCategories(formData.categories),
         })
       });
 
@@ -92,6 +92,19 @@ export default function CreateRecipe() {
   };
 
   console.log(formData);
+
+  const formatCategories = (categories: string) => {
+    return categories
+      .split(',')
+      .map((category) =>
+        category
+          .replace('#', '') 
+          .trim()
+          .toLowerCase()
+          .replace(/^\w/, (c) => c.toUpperCase())
+      )
+      .join(', ');
+  }
 
   if (!session?.user) {
     return (

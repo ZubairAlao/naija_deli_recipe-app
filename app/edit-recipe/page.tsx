@@ -120,11 +120,11 @@ function EditRecipe() {
           title: formData.title,
           description: formData.description,
           time: formData.time,
-          imageUrl: imageUrl,  
+          imageUrl: imageUrl,
           imagePublicId: imagePublicId,
           ingredients: formData.ingredients,
           walkthrough: formData.walkthrough,
-          categories: formData.categories,
+          categories: formatCategories(formData.categories),
         })
       });
 
@@ -138,6 +138,19 @@ function EditRecipe() {
       setSubmitting(false);
     }
   };
+
+  const formatCategories = (categories: string) => {
+    return categories
+      .split(',')
+      .map((category) =>
+        category
+          .replace('#', '') 
+          .trim()
+          .toLowerCase()
+          .replace(/^\w/, (c) => c.toUpperCase())
+      )
+      .join(', ');
+  }
 
   console.log(formData);
 

@@ -151,7 +151,7 @@ export default function Form({ type, formData, setFormData, submitting, handleSu
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="categories" className="block text-sm font-medium text-gray-700">Categories (one category allowed):</label>
+                    <label htmlFor="categories" className="block text-sm font-medium text-gray-700">Categories (one category allowed) e.g Igbo:</label>
                     <input 
                         type="text" 
                         name="categories" 
