@@ -102,7 +102,7 @@ interface Post {
   
         if (res.ok) {
           const updatedPosts = userPosts.map(p =>
-            p._id === post._id ? { ...p, likes: data.likes } : p
+            p._id === post._id ? { ...p, likes: data.likes, likedBy: data.likedBy } : p
           );
           setUserPosts(updatedPosts);
         }

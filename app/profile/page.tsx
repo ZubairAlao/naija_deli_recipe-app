@@ -146,7 +146,7 @@ interface Post {
                 // Update the local posts state immediately after liking
                 const updatedPosts = myPosts.map((p) =>
                     p._id === post._id
-                        ? { ...p, likes: data.likes, likedBy: data.likedBy } // Update both likes and likedBy list
+                        ? { ...p, likes: data.likes, likedBy: data.likedBy } // Update both likes and likedBy list 
                         : p
                 );
                 setMyPosts(updatedPosts);
